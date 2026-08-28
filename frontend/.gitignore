@@ -91,3 +91,5 @@ htmlcov/
 *.tmp
 *.temp
 *.bak
+.env
+.env.local

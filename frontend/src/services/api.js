@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://127.0.0.1:8000/api";
+const API_BASE_URL = `${import.meta.env.VITE_API_URL}/api`;
 
 async function request(endpoint) {
   const response = await fetch(`${API_BASE_URL}${endpoint}`);
@@ -20,9 +20,7 @@ export async function getJobsForRole(roleId) {
 }
 
 export async function getJobMatch(userId, jobId) {
-  return request(
-    `/jobs/${jobId}/match?user_id=${userId}`
-  );
+  return request(`/jobs/${jobId}/match?user_id=${userId}`);
 }
 
 export async function getSkillDemand(roleId) {
