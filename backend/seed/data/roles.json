@@ -1,0 +1,80 @@
+[
+  {
+    "id": "frontend-developer",
+    "title": "Frontend Developer",
+    "category": "Software Engineering",
+    "description": "Builds responsive and interactive web interfaces."
+  },
+  {
+    "id": "backend-developer",
+    "title": "Backend Developer",
+    "category": "Software Engineering",
+    "description": "Builds APIs, server-side systems and backend services."
+  },
+  {
+    "id": "full-stack-developer",
+    "title": "Full Stack Developer",
+    "category": "Software Engineering",
+    "description": "Builds both frontend and backend applications."
+  },
+  {
+    "id": "python-developer",
+    "title": "Python Developer",
+    "category": "Software Engineering",
+    "description": "Develops applications and backend systems using Python."
+  },
+  {
+    "id": "software-engineer",
+    "title": "Software Engineer",
+    "category": "Software Engineering",
+    "description": "Designs, develops and maintains software systems."
+  },
+  {
+    "id": "data-analyst",
+    "title": "Data Analyst",
+    "category": "Data",
+    "description": "Analyzes data and creates insights and dashboards."
+  },
+  {
+    "id": "data-scientist",
+    "title": "Data Scientist",
+    "category": "Data",
+    "description": "Uses statistics and machine learning to solve data problems."
+  },
+  {
+    "id": "data-engineer",
+    "title": "Data Engineer",
+    "category": "Data",
+    "description": "Builds systems and pipelines for processing data."
+  },
+  {
+    "id": "ml-engineer",
+    "title": "Machine Learning Engineer",
+    "category": "AI/ML",
+    "description": "Builds and deploys machine learning systems."
+  },
+  {
+    "id": "ai-engineer",
+    "title": "AI Engineer",
+    "category": "AI/ML",
+    "description": "Builds applications using artificial intelligence technologies."
+  },
+  {
+    "id": "devops-engineer",
+    "title": "DevOps Engineer",
+    "category": "Cloud/DevOps",
+    "description": "Automates infrastructure, deployments and software delivery."
+  },
+  {
+    "id": "cloud-engineer",
+    "title": "Cloud Engineer",
+    "category": "Cloud/DevOps",
+    "description": "Designs and manages cloud infrastructure and services."
+  },
+  {
+    "id": "database-developer",
+    "title": "Database Developer",
+    "category": "Database",
+    "description": "Designs, develops and optimizes database systems."
+  }
+]

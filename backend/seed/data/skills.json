@@ -1,0 +1,254 @@
+[
+  {
+    "id": "python",
+    "name": "Python",
+    "category": "Programming",
+    "difficulty": "Beginner"
+  },
+  {
+    "id": "javascript",
+    "name": "JavaScript",
+    "category": "Programming",
+    "difficulty": "Beginner"
+  },
+  {
+    "id": "typescript",
+    "name": "TypeScript",
+    "category": "Programming",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "java",
+    "name": "Java",
+    "category": "Programming",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "html",
+    "name": "HTML",
+    "category": "Frontend",
+    "difficulty": "Beginner"
+  },
+  {
+    "id": "css",
+    "name": "CSS",
+    "category": "Frontend",
+    "difficulty": "Beginner"
+  },
+  {
+    "id": "react",
+    "name": "React",
+    "category": "Frontend",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "nextjs",
+    "name": "Next.js",
+    "category": "Frontend",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "redux",
+    "name": "Redux",
+    "category": "Frontend",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "tailwind",
+    "name": "Tailwind CSS",
+    "category": "Frontend",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "nodejs",
+    "name": "Node.js",
+    "category": "Backend",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "expressjs",
+    "name": "Express.js",
+    "category": "Backend",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "fastapi",
+    "name": "FastAPI",
+    "category": "Backend",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "flask",
+    "name": "Flask",
+    "category": "Backend",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "django",
+    "name": "Django",
+    "category": "Backend",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "rest-api",
+    "name": "REST API",
+    "category": "Backend",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "sql",
+    "name": "SQL",
+    "category": "Database",
+    "difficulty": "Beginner"
+  },
+  {
+    "id": "mysql",
+    "name": "MySQL",
+    "category": "Database",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "postgresql",
+    "name": "PostgreSQL",
+    "category": "Database",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "mongodb",
+    "name": "MongoDB",
+    "category": "Database",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "redis",
+    "name": "Redis",
+    "category": "Database",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "git",
+    "name": "Git",
+    "category": "Tools",
+    "difficulty": "Beginner"
+  },
+  {
+    "id": "github",
+    "name": "GitHub",
+    "category": "Tools",
+    "difficulty": "Beginner"
+  },
+  {
+    "id": "docker",
+    "name": "Docker",
+    "category": "DevOps",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "kubernetes",
+    "name": "Kubernetes",
+    "category": "DevOps",
+    "difficulty": "Advanced"
+  },
+  {
+    "id": "aws",
+    "name": "AWS",
+    "category": "Cloud",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "azure",
+    "name": "Azure",
+    "category": "Cloud",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "linux",
+    "name": "Linux",
+    "category": "DevOps",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "cicd",
+    "name": "CI/CD",
+    "category": "DevOps",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "pandas",
+    "name": "Pandas",
+    "category": "Data",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "numpy",
+    "name": "NumPy",
+    "category": "Data",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "excel",
+    "name": "Excel",
+    "category": "Data",
+    "difficulty": "Beginner"
+  },
+  {
+    "id": "powerbi",
+    "name": "Power BI",
+    "category": "Data",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "tableau",
+    "name": "Tableau",
+    "category": "Data",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "statistics",
+    "name": "Statistics",
+    "category": "Data",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "scikit-learn",
+    "name": "Scikit-learn",
+    "category": "AI/ML",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "tensorflow",
+    "name": "TensorFlow",
+    "category": "AI/ML",
+    "difficulty": "Advanced"
+  },
+  {
+    "id": "pytorch",
+    "name": "PyTorch",
+    "category": "AI/ML",
+    "difficulty": "Advanced"
+  },
+  {
+    "id": "machine-learning",
+    "name": "Machine Learning",
+    "category": "AI/ML",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": "deep-learning",
+    "name": "Deep Learning",
+    "category": "AI/ML",
+    "difficulty": "Advanced"
+  },
+  {
+    "id": "nlp",
+    "name": "NLP",
+    "category": "AI/ML",
+    "difficulty": "Advanced"
+  },
+  {
+    "id": "computer-vision",
+    "name": "Computer Vision",
+    "category": "AI/ML",
+    "difficulty": "Advanced"
+  }
+]

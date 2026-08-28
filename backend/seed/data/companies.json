@@ -1,0 +1,50 @@
+[
+  {
+    "id": "technova",
+    "name": "TechNova",
+    "industry": "Software",
+    "location": "Bangalore"
+  },
+  {
+    "id": "codesphere",
+    "name": "CodeSphere",
+    "industry": "Technology",
+    "location": "Hyderabad"
+  },
+  {
+    "id": "vertex-labs",
+    "name": "Vertex Labs",
+    "industry": "Software",
+    "location": "Chennai"
+  },
+  {
+    "id": "dataforge",
+    "name": "DataForge",
+    "industry": "Analytics",
+    "location": "Pune"
+  },
+  {
+    "id": "ailabs",
+    "name": "AI Labs",
+    "industry": "Artificial Intelligence",
+    "location": "Bangalore"
+  },
+  {
+    "id": "cloudsphere",
+    "name": "CloudSphere",
+    "industry": "Cloud Technology",
+    "location": "Hyderabad"
+  },
+  {
+    "id": "nextgen-systems",
+    "name": "NextGen Systems",
+    "industry": "Enterprise Software",
+    "location": "Bangalore"
+  },
+  {
+    "id": "insightworks",
+    "name": "InsightWorks",
+    "industry": "Data Analytics",
+    "location": "Chennai"
+  }
+]

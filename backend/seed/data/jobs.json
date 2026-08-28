@@ -1,0 +1,621 @@
+[
+  {
+    "id": "job-backend-001",
+    "title": "Backend Developer",
+    "description": "Build and maintain backend APIs and services.",
+    "location": "Bangalore",
+    "experience_level": "Entry Level",
+    "employment_type": "Full Time",
+    "role_id": "backend-developer",
+    "company_id": "technova",
+    "requirements": [
+      {
+        "skill_id": "python",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "fastapi",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "postgresql",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "docker",
+        "importance": "medium",
+        "proficiency": "beginner"
+      },
+      {
+        "skill_id": "aws",
+        "importance": "medium",
+        "proficiency": "beginner"
+      }
+    ]
+  },
+  {
+    "id": "job-backend-002",
+    "title": "Backend Developer",
+    "description": "Develop scalable Node.js backend services.",
+    "location": "Hyderabad",
+    "experience_level": "Entry Level",
+    "employment_type": "Full Time",
+    "role_id": "backend-developer",
+    "company_id": "codesphere",
+    "requirements": [
+      {
+        "skill_id": "javascript",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "nodejs",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "expressjs",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "mongodb",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "redis",
+        "importance": "medium",
+        "proficiency": "beginner"
+      }
+    ]
+  },
+  {
+    "id": "job-backend-003",
+    "title": "Backend Developer",
+    "description": "Develop enterprise backend services using Java.",
+    "location": "Bangalore",
+    "experience_level": "Entry Level",
+    "employment_type": "Full Time",
+    "role_id": "backend-developer",
+    "company_id": "nextgen-systems",
+    "requirements": [
+      {
+        "skill_id": "java",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "mysql",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "docker",
+        "importance": "medium",
+        "proficiency": "beginner"
+      },
+      {
+        "skill_id": "linux",
+        "importance": "medium",
+        "proficiency": "beginner"
+      }
+    ]
+  },
+  {
+    "id": "job-fullstack-001",
+    "title": "Full Stack Developer",
+    "description": "Build full stack web applications.",
+    "location": "Bangalore",
+    "experience_level": "Entry Level",
+    "employment_type": "Full Time",
+    "role_id": "full-stack-developer",
+    "company_id": "technova",
+    "requirements": [
+      {
+        "skill_id": "javascript",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "react",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "nodejs",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "mongodb",
+        "importance": "medium",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "git",
+        "importance": "medium",
+        "proficiency": "beginner"
+      }
+    ]
+  },
+  {
+    "id": "job-fullstack-002",
+    "title": "Full Stack Developer",
+    "description": "Develop modern web applications using React and Python.",
+    "location": "Chennai",
+    "experience_level": "Entry Level",
+    "employment_type": "Full Time",
+    "role_id": "full-stack-developer",
+    "company_id": "vertex-labs",
+    "requirements": [
+      {
+        "skill_id": "python",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "react",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "fastapi",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "postgresql",
+        "importance": "medium",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "docker",
+        "importance": "medium",
+        "proficiency": "beginner"
+      }
+    ]
+  },
+  {
+    "id": "job-frontend-001",
+    "title": "Frontend Developer",
+    "description": "Build responsive frontend applications.",
+    "location": "Hyderabad",
+    "experience_level": "Entry Level",
+    "employment_type": "Full Time",
+    "role_id": "frontend-developer",
+    "company_id": "codesphere",
+    "requirements": [
+      {
+        "skill_id": "html",
+        "importance": "high",
+        "proficiency": "beginner"
+      },
+      {
+        "skill_id": "css",
+        "importance": "high",
+        "proficiency": "beginner"
+      },
+      {
+        "skill_id": "javascript",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "react",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "typescript",
+        "importance": "medium",
+        "proficiency": "beginner"
+      }
+    ]
+  },
+  {
+    "id": "job-data-001",
+    "title": "Data Analyst",
+    "description": "Analyze business data and build dashboards.",
+    "location": "Pune",
+    "experience_level": "Entry Level",
+    "employment_type": "Full Time",
+    "role_id": "data-analyst",
+    "company_id": "dataforge",
+    "requirements": [
+      {
+        "skill_id": "sql",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "excel",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "powerbi",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "python",
+        "importance": "medium",
+        "proficiency": "beginner"
+      },
+      {
+        "skill_id": "statistics",
+        "importance": "medium",
+        "proficiency": "intermediate"
+      }
+    ]
+  },
+  {
+    "id": "job-data-002",
+    "title": "Data Analyst",
+    "description": "Create analytical reports and Tableau dashboards.",
+    "location": "Chennai",
+    "experience_level": "Entry Level",
+    "employment_type": "Full Time",
+    "role_id": "data-analyst",
+    "company_id": "insightworks",
+    "requirements": [
+      {
+        "skill_id": "sql",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "tableau",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "excel",
+        "importance": "medium",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "statistics",
+        "importance": "medium",
+        "proficiency": "intermediate"
+      }
+    ]
+  },
+  {
+    "id": "job-ml-001",
+    "title": "Machine Learning Engineer",
+    "description": "Build and deploy machine learning models.",
+    "location": "Bangalore",
+    "experience_level": "Entry Level",
+    "employment_type": "Full Time",
+    "role_id": "ml-engineer",
+    "company_id": "ailabs",
+    "requirements": [
+      {
+        "skill_id": "python",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "numpy",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "pandas",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "machine-learning",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "docker",
+        "importance": "medium",
+        "proficiency": "beginner"
+      }
+    ]
+  },
+  {
+    "id": "job-devops-001",
+    "title": "DevOps Engineer",
+    "description": "Automate deployments and manage cloud infrastructure.",
+    "location": "Hyderabad",
+    "experience_level": "Entry Level",
+    "employment_type": "Full Time",
+    "role_id": "devops-engineer",
+    "company_id": "cloudsphere",
+    "requirements": [
+      {
+        "skill_id": "linux",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "docker",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "kubernetes",
+        "importance": "medium",
+        "proficiency": "beginner"
+      },
+      {
+        "skill_id": "aws",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "cicd",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "git",
+        "importance": "medium",
+        "proficiency": "beginner"
+      }
+    ]
+  },
+  {
+    "id": "job-python-001",
+    "title": "Python Developer",
+    "description": "Build backend automation tools and Python services.",
+    "location": "Bangalore",
+    "experience_level": "Entry Level",
+    "employment_type": "Full Time",
+    "role_id": "python-developer",
+    "company_id": "technova",
+    "requirements": [
+      {
+        "skill_id": "python",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "django",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "sql",
+        "importance": "medium",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "git",
+        "importance": "medium",
+        "proficiency": "beginner"
+      }
+    ]
+  },
+  {
+    "id": "job-software-001",
+    "title": "Software Engineer",
+    "description": "Develop product features across APIs, data, and internal tools.",
+    "location": "Hyderabad",
+    "experience_level": "Entry Level",
+    "employment_type": "Full Time",
+    "role_id": "software-engineer",
+    "company_id": "nextgen-systems",
+    "requirements": [
+      {
+        "skill_id": "python",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "javascript",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "rest-api",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "sql",
+        "importance": "medium",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "git",
+        "importance": "medium",
+        "proficiency": "beginner"
+      }
+    ]
+  },
+  {
+    "id": "job-dataeng-001",
+    "title": "Data Engineer",
+    "description": "Build and maintain data pipelines and warehouse integrations.",
+    "location": "Pune",
+    "experience_level": "Entry Level",
+    "employment_type": "Full Time",
+    "role_id": "data-engineer",
+    "company_id": "dataforge",
+    "requirements": [
+      {
+        "skill_id": "python",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "sql",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "postgresql",
+        "importance": "medium",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "pandas",
+        "importance": "medium",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "docker",
+        "importance": "medium",
+        "proficiency": "beginner"
+      }
+    ]
+  },
+  {
+    "id": "job-database-001",
+    "title": "Database Developer",
+    "description": "Design database schemas and optimize relational queries.",
+    "location": "Chennai",
+    "experience_level": "Entry Level",
+    "employment_type": "Full Time",
+    "role_id": "database-developer",
+    "company_id": "insightworks",
+    "requirements": [
+      {
+        "skill_id": "sql",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "mysql",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "postgresql",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "git",
+        "importance": "medium",
+        "proficiency": "beginner"
+      }
+    ]
+  },
+  {
+    "id": "job-datasci-001",
+    "title": "Data Scientist",
+    "description": "Analyze datasets and train predictive models for product insights.",
+    "location": "Bangalore",
+    "experience_level": "Entry Level",
+    "employment_type": "Full Time",
+    "role_id": "data-scientist",
+    "company_id": "ailabs",
+    "requirements": [
+      {
+        "skill_id": "python",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "pandas",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "numpy",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "statistics",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "importance": "high",
+        "proficiency": "intermediate"
+      }
+    ]
+  },
+  {
+    "id": "job-ai-001",
+    "title": "AI Engineer",
+    "description": "Develop AI-powered application features and model integrations.",
+    "location": "Hyderabad",
+    "experience_level": "Entry Level",
+    "employment_type": "Full Time",
+    "role_id": "ai-engineer",
+    "company_id": "ailabs",
+    "requirements": [
+      {
+        "skill_id": "python",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "machine-learning",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "deep-learning",
+        "importance": "high",
+        "proficiency": "beginner"
+      },
+      {
+        "skill_id": "nlp",
+        "importance": "medium",
+        "proficiency": "beginner"
+      },
+      {
+        "skill_id": "docker",
+        "importance": "medium",
+        "proficiency": "beginner"
+      }
+    ]
+  },
+  {
+    "id": "job-cloud-001",
+    "title": "Cloud Engineer",
+    "description": "Support cloud infrastructure, deployments, and platform operations.",
+    "location": "Chennai",
+    "experience_level": "Entry Level",
+    "employment_type": "Full Time",
+    "role_id": "cloud-engineer",
+    "company_id": "cloudsphere",
+    "requirements": [
+      {
+        "skill_id": "linux",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "aws",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "docker",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "cicd",
+        "importance": "high",
+        "proficiency": "intermediate"
+      },
+      {
+        "skill_id": "git",
+        "importance": "medium",
+        "proficiency": "beginner"
+      }
+    ]
+  }
+]
