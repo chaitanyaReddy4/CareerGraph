@@ -1,80 +1,392 @@
 # CareerGraph
 
-CareerGraph is a career intelligence and job-matching platform that connects a user's skills with suitable career roles and job opportunities.
+> A graph-powered career intelligence platform that connects a user's skills with suitable career roles, relevant job opportunities, companies, and skill gaps.
 
-The system models relationships between **users, skills, career roles, job postings, and companies** using a graph database. It calculates role compatibility from the user's current skills, identifies missing skills, maps recommended roles to relevant job postings, and evaluates the user's skill match against individual jobs.
+CareerGraph helps users understand:
+
+- Which career roles match their current skills
+- Which skills they already have
+- Which skills they are missing
+- Which jobs are available for a selected career role
+- How well they match a specific job
+- Which skills they should focus on developing next
 
 ---
 
-## Overview
+## 📌 Overview
 
-CareerGraph follows a skill-driven career discovery workflow:
+Traditional job platforms usually focus on searching and filtering job listings.
+
+CareerGraph takes a different approach.
+
+It starts with the user's **current skills** and builds a path from:
 
 ```text
-User Skills
-     │
-     ▼
-Role Matching
-     │
-     ▼
-Recommended Career Roles
-     │
-     ├───────────────┐
-     ▼               ▼
-Skill Gap Analysis  Role-specific Jobs
-                         │
-                         ▼
-                    Job Matching
-                         │
-                         ▼
-                 Job Skill Gaps
-                         │
-                         ▼
-                   Career Focus
+Current Skills
+      │
+      ▼
+Career Role Matching
+      │
+      ▼
+Recommended Roles
+      │
+      ├──────────────► Skill Gap Analysis
+      │
+      ▼
+Role-Specific Jobs
+      │
+      ▼
+Individual Job Matching
+      │
+      ▼
+Job Skill Gaps
+      │
+      ▼
+Career Focus
 
-Instead of treating career recommendations and job search as separate features, CareerGraph connects them through the same skill and role relationships.
+The system uses a graph database to represent relationships between users, skills, career roles, job postings, and companies.
 
-Core Capabilities
-1. Skill-Based Role Recommendation
+🎯 Problem Statement
 
-The system compares a user's current skills against the skills required by different career roles.
+A candidate may know several technologies but still not know:
 
-For every role, CareerGraph calculates:
+"What roles am I currently suitable for?"
 
-Required skills
-Matched skills
-Missing skills
-Match percentage
+"What jobs can I apply for?"
+
+"What skills am I missing?"
+
+"Which skill should I learn next?"
+
+"Which career path should I focus on?"
+
+CareerGraph addresses these questions by connecting a user's skills to career roles and then connecting those roles to actual job requirements.
+
+💡 Core Idea
+
+CareerGraph treats career information as a connected graph instead of isolated records.
+
+                         ┌───────────────┐
+                         │     USER      │
+                         └───────┬───────┘
+                                 │
+                              HAS_SKILL
+                                 │
+                                 ▼
+                         ┌───────────────┐
+                         │     SKILL     │
+                         └───────┬───────┘
+                                 │
+                         required / supports
+                                 │
+                                 ▼
+                         ┌───────────────┐
+                         │     ROLE      │
+                         └───────┬───────┘
+                                 │
+                               FOR_ROLE
+                                 │
+                                 ▼
+                         ┌───────────────┐
+                         │  JOB POSTING  │
+                         └───────┬───────┘
+                                 │
+                    ┌────────────┴────────────┐
+                    │                         │
+                 REQUIRES                 OFFERED_BY
+                    │                         │
+                    ▼                         ▼
+             ┌───────────────┐       ┌───────────────┐
+             │     SKILL     │       │    COMPANY    │
+             └───────────────┘       └───────────────┘
+
+This structure allows CareerGraph to traverse relationships naturally.
+
+🚀 Key Features
+1. Skill-Based Career Recommendations
+
+The system analyzes a user's current skills and recommends compatible career roles.
 
 Example:
 
+User Skills
+────────────────────────
+Python
+SQL
+Git
+React
+
+            ↓
+
+Recommended Roles
+────────────────────────
+Python Developer       67%
+Backend Developer      52%
+Software Engineer      48%
+Data Engineer          48%
+Data Analyst            35%
+...
+
+Roles are presented with their matched and missing skills.
+
+2. Skill Gap Analysis
+
+For every recommended role, CareerGraph identifies the skills that the user currently has and the skills that are missing.
+
+Example:
+
+┌─────────────────────────────────────────┐
+│ Python Developer                        │
+│                                         │
+│ Match: 67%                              │
+│                                         │
+│ Matched Skills                          │
+│   ✓ Python                              │
+│   ✓ SQL                                 │
+│   ✓ Git                                 │
+│                                         │
+│ Missing Skills                          │
+│   ✗ REST API                            │
+└─────────────────────────────────────────┘
+
+This gives the user an immediate understanding of what they need to improve.
+
+3. Role-Specific Job Discovery
+
+CareerGraph connects recommended career roles to job postings.
+
+Recommended Role
+       │
+       ▼
 Python Developer
-Match: 67%
+       │
+       ├── Job 1
+       ├── Job 2
+       ├── Job 3
+       └── Job 4
 
-Matched:
-- Python
-- SQL
-- Git
+Each job contains information such as:
 
-Missing:
-- REST API
-
-The recommendations are ranked by compatibility with the user's current skill set.
-
-2. Graph-Based Career Model
-
-CareerGraph uses a graph-oriented data model to represent relationships between entities.
-
-The core entities include:
-
-User
-Skill
-Role
-JobPosting
+Job Title
 Company
+Location
+Experience Level
+Employment Type
+Required Skills
+Skill Importance
+Required Proficiency
 
-Important relationships include:
+This means users don't just receive a role recommendation — they can continue into the actual requirements associated with that role.
 
+4. Job-Level Skill Matching
+
+CareerGraph performs another matching step at the individual job level.
+
+                  USER
+                   │
+                   ▼
+             Current Skills
+                   │
+                   ▼
+          ┌─────────────────┐
+          │ Compare Skills  │
+          └────────┬────────┘
+                   │
+                   ▼
+          Job Requirements
+                   │
+          ┌────────┴────────┐
+          │                 │
+          ▼                 ▼
+    Matched Skills     Missing Skills
+          │                 │
+          ▼                 ▼
+     Skill Weight       Skill Gap
+          │
+          ▼
+   Proficiency Weight
+          │
+          ▼
+     Match Percentage
+
+Example:
+
+Job: Python Developer
+Company: TechNova
+Location: Bangalore
+
+Required Skills
+────────────────────────────
+Python       High     Intermediate
+Django       High     Intermediate
+SQL          Medium   Intermediate
+Git          Medium   Beginner
+
+User Matches
+────────────────────────────
+✓ Python
+✓ SQL
+✓ Git
+
+Missing
+────────────────────────────
+✗ Django
+
+The resulting job match provides a more specific assessment than the broader role recommendation.
+
+5. Skill Importance and Proficiency
+
+Job requirements contain two important properties:
+
+Importance
+    High
+    Medium
+    Low
+
+Proficiency
+    Beginner
+    Intermediate
+    Advanced
+
+CareerGraph uses these attributes while calculating compatibility.
+
+Proficiency Weights
+Beginner       → 50%
+Intermediate   → 75%
+Advanced       → 100%
+
+This allows the system to distinguish between simply having a skill and having it at the required proficiency.
+
+🧠 Matching Pipeline
+
+The complete recommendation process can be represented as:
+
+┌──────────────────────┐
+│   USER PROFILE       │
+│                      │
+│ Current Skills       │
+│ Skill Proficiency    │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│   ROLE MATCHING      │
+│                      │
+│ Compare skills with  │
+│ role requirements    │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ RECOMMENDED ROLES    │
+│                      │
+│ Match %              │
+│ Matched Skills       │
+│ Missing Skills       │
+└──────────┬───────────┘
+           │
+           ├───────────────────────┐
+           │                       │
+           ▼                       ▼
+┌──────────────────────┐  ┌──────────────────────┐
+│   SKILL GAP          │  │   ROLE JOBS          │
+│                      │  │                      │
+│ Missing technologies │  │ Available postings   │
+└──────────────────────┘  └──────────┬───────────┘
+                                     │
+                                     ▼
+                           ┌──────────────────────┐
+                           │   JOB MATCHING       │
+                           │                      │
+                           │ User vs Job Skills   │
+                           └──────────┬───────────┘
+                                      │
+                                      ▼
+                           ┌──────────────────────┐
+                           │   CAREER FOCUS       │
+                           │                      │
+                           │ Skills to develop    │
+                           └──────────────────────┘
+🏗️ System Architecture
+
+CareerGraph consists of three primary layers:
+
+┌─────────────────────────────────────────────────────────┐
+│                     CAREERGRAPH                         │
+└───────────────────────────┬─────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────┐
+│                    FRONTEND LAYER                       │
+│                                                         │
+│                  React + Vite                           │
+│                                                         │
+│  Overview | Recommended Roles | Jobs | Career Focus    │
+│  Skills   | Profile                                     │
+└───────────────────────────┬─────────────────────────────┘
+                            │
+                         REST API
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────┐
+│                    BACKEND LAYER                        │
+│                                                         │
+│                    FastAPI                              │
+│                                                         │
+│  Routes                                                 │
+│    ├── Role APIs                                        │
+│    ├── Job APIs                                         │
+│    └── Health API                                       │
+│                                                         │
+│  Services                                               │
+│    ├── Role Matching                                    │
+│    └── Job Matching                                     │
+└───────────────────────────┬─────────────────────────────┘
+                            │
+                         Cypher
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────┐
+│                  GRAPH DATABASE                         │
+│                                                         │
+│              CognoDB / Neo4j-Compatible                 │
+│                                                         │
+│  User ── Skill ── Role ── Job ── Company                │
+└─────────────────────────────────────────────────────────┘
+🗄️ Graph Data Model
+
+The graph model is the core of CareerGraph.
+
+┌──────────────┐
+│     USER     │
+└──────┬───────┘
+       │
+       │ HAS_SKILL
+       ▼
+┌──────────────┐
+│    SKILL     │
+└──────┬───────┘
+       │
+       │ supports / required by
+       ▼
+┌──────────────┐
+│     ROLE     │
+└──────┬───────┘
+       │
+       │ FOR_ROLE
+       ▼
+┌──────────────┐
+│ JOB POSTING  │
+└──────┬───────┘
+       │
+       ├──────────────────────┐
+       │                      │
+       │ REQUIRES             │ OFFERED_BY
+       ▼                      ▼
+┌──────────────┐       ┌──────────────┐
+│    SKILL     │       │   COMPANY    │
+└──────────────┘       └──────────────┘
+Core relationships
 (User)-[:HAS_SKILL]->(Skill)
 
 (JobPosting)-[:FOR_ROLE]->(Role)
@@ -83,103 +395,209 @@ Important relationships include:
 
 (JobPosting)-[:REQUIRES]->(Skill)
 
-This structure allows the application to traverse relationships between a user's skills, career roles, required skills, and job opportunities.
+The graph structure makes it possible to move from a user's skills to compatible roles and then from those roles to relevant job postings.
 
-3. Skill Gap Analysis
+🔄 End-to-End User Flow
+STEP 1
+User opens CareerGraph
+        │
+        ▼
+STEP 2
+System loads user profile
+        │
+        ▼
+STEP 3
+Current skills are analyzed
+        │
+        ▼
+STEP 4
+Compatible career roles are identified
+        │
+        ▼
+STEP 5
+Roles are ranked by match
+        │
+        ▼
+STEP 6
+User views skill gaps
+        │
+        ▼
+STEP 7
+User selects a career role
+        │
+        ▼
+STEP 8
+System displays jobs for that role
+        │
+        ▼
+STEP 9
+User opens an individual job
+        │
+        ▼
+STEP 10
+System compares user skills with job requirements
+        │
+        ▼
+STEP 11
+User sees job match + missing skills
+        │
+        ▼
+STEP 12
+User decides what career path / skills to focus on
+🖥️ Frontend
 
-For each recommended role, the system identifies the skills that the user does not currently have.
+The frontend is built using React and Vite.
 
-For example:
+Main sections
+CareerGraph
+│
+├── Overview
+│   ├── Current Skills
+│   ├── Best Match
+│   ├── Roles Analyzed
+│   └── Recommended Roles
+│
+├── Recommended Roles
+│   ├── Role Match %
+│   ├── Matched Skills
+│   ├── Missing Skills
+│   └── View Role
+│
+├── Job Postings
+│   ├── Job Title
+│   ├── Company
+│   ├── Location
+│   ├── Experience
+│   └── Requirements
+│
+├── Career Focus
+│   └── Skills to Develop
+│
+├── Your Skills
+│   └── Current Skill Profile
+│
+└── Profile
+    └── User Information
+⚙️ Backend
 
-Backend Developer
-Match: 52%
+The backend is implemented using:
 
-Matched:
-- Python
-- SQL
-- Git
+Python
+   │
+   ▼
+FastAPI
+   │
+   ├── Routes
+   │
+   ├── Services
+   │
+   └── Database Driver
+           │
+           ▼
+     Graph Database
 
-Skill Gaps:
-- REST API
-- Docker
+The backend exposes REST endpoints consumed by the React frontend.
 
-CareerGraph also aggregates skill gaps across recommended roles to identify skills that are repeatedly required across the user's potential career paths.
+🔌 API Endpoints
+Health Check
+GET /api/health
 
-4. Role-to-Job Mapping
+Used to verify that the API is running and that the graph database connection is available.
 
-Each career role can have multiple job postings associated with it.
+Example:
 
-The relationship is represented as:
+{
+  "status": "ok",
+  "service": "CareerGraph API",
+  "database": "connected"
+}
+Recommended Roles
+GET /api/users/{user_id}/recommended-roles
 
-Role
- │
- ├── Job Posting
- ├── Job Posting
- ├── Job Posting
- └── Job Posting
+Returns career roles recommended for a user based on their current skills.
 
-This allows the user to move from:
+Example response structure:
 
-Recommended Role
-       ↓
-Role Details
-       ↓
-Associated Job Postings
-       ↓
-Individual Job
+{
+  "user_id": "user-demo",
+  "recommendations": [
+    {
+      "role_id": "python-developer",
+      "role": "Python Developer",
+      "total_required_skills": 4,
+      "matched_skills": 3,
+      "match_percentage": 67,
+      "matchedSkills": [
+        "Python",
+        "SQL",
+        "Git"
+      ],
+      "missingSkills": [
+        "REST API"
+      ]
+    }
+  ]
+}
+💼 Jobs for a Role
+GET /api/roles/{role_id}/jobs
 
-The current seeded dataset provides job postings for all 13 career roles used by the recommendation system.
+Returns job postings associated with a particular career role.
 
-5. Job-Level Skill Matching
+Example:
 
-CareerGraph does not stop at role matching.
+{
+  "role_id": "python-developer",
+  "role": "Python Developer",
+  "total_jobs": 1,
+  "jobs": [
+    {
+      "job_id": "job-python-001",
+      "job_title": "Python Developer",
+      "company": "TechNova",
+      "location": "Bangalore",
+      "experience_level": "Entry Level",
+      "employment_type": "Full Time"
+    }
+  ]
+}
+🎯 Job Match
+GET /api/jobs/{job_id}/match?user_id={user_id}
 
-For an individual job posting, the system compares the user's skills against the skills required by that specific job.
+Calculates the compatibility between a user and a specific job.
 
-Job requirements have an importance level:
+Example:
 
-high
-medium
-low
+{
+  "job_id": "job-python-001",
+  "job_title": "Python Developer",
+  "company": "TechNova",
+  "location": "Bangalore",
+  "total_required_skills": 4,
+  "matched_skills": 3,
+  "match_percentage": 60,
+  "matched_skills_list": [
+    "Python",
+    "SQL",
+    "Git"
+  ],
+  "missing_skills": [
+    "Django"
+  ]
+}
+📊 Job Requirements
 
-The matching calculation assigns different weights to these requirements.
+A job requirement contains:
 
-Skill proficiency also affects the earned match score:
+{
+  "id": "python",
+  "importance": "high",
+  "name": "Python",
+  "proficiency": "intermediate"
+}
 
-Advanced      → 100% of skill weight
-Intermediate  → 75% of skill weight
-Beginner      → 50% of skill weight
+This allows the matching system to consider not only whether a skill exists but also how important that skill is and what proficiency level is expected.
 
-The resulting score represents the user's compatibility with the individual job.
-
-Conceptually:
-
-Job Match
-    =
-Weighted matched skill score
------------------------------
-Total required skill weight
-
-This produces a more meaningful job-level match than simply counting matching technologies.
-
-Technical Architecture
-                         CareerGraph
-                              │
-             ┌────────────────┴────────────────┐
-             │                                 │
-        React Frontend                    FastAPI Backend
-             │                                 │
-             │                         Application Services
-             │                                 │
-             │                    ┌────────────┴────────────┐
-             │                    │                         │
-             │              Role Matching             Job Matching
-             │                    │                         │
-             └────────────────────┴────────────┬────────────┘
-                                              │
-                                              ▼
-                                      CognoDB / Neo4j
-                                      Graph Database
+🧰 Technology Stack
 Frontend
 React
 Vite
@@ -189,160 +607,311 @@ CSS
 Backend
 Python
 FastAPI
-Graph-based service layer
+Uvicorn
+Neo4j Python Driver
+Cypher
 Database
-CognoDB / Neo4j-compatible graph database
-Cypher queries
+CognoDB
+Neo4j-Compatible Graph Database
 Development Tools
 Git
 GitHub
+VS Code
 npm
-Python virtual environment
-Application Structure
+Python Virtual Environment
+Postman / Browser API Testing
+📁 Project Structure
 CareerGraph/
 │
 ├── backend/
+│   │
 │   ├── app/
 │   │   ├── database/
+│   │   │   └── driver.py
+│   │   │
 │   │   ├── routes/
+│   │   │   ├── roles.py
+│   │   │   └── jobs.py
+│   │   │
 │   │   ├── services/
-│   │   └── ...
+│   │   │   ├── role matching
+│   │   │   └── job matching
+│   │   │
+│   │   ├── config.py
+│   │   └── main.py
 │   │
 │   ├── seed/
-│   │   ├── data/
-│   │   │   └── jobs.json
-│   │   └── seed_data.py
+│   │   └── data/
 │   │
+│   ├── requirements.txt
 │   └── ...
 │
 ├── frontend/
+│   │
 │   ├── src/
 │   │   ├── components/
 │   │   ├── pages/
 │   │   ├── services/
+│   │   │   └── api.js
 │   │   ├── utils/
 │   │   ├── App.jsx
 │   │   └── main.jsx
 │   │
+│   ├── public/
 │   ├── package.json
+│   ├── package-lock.json
+│   ├── vite.config.js
 │   └── ...
 │
+├── docs/
+│
 ├── README.md
-└── .gitignore
-Backend Services
+├── .gitignore
+└── ...
+🔗 Frontend ↔ Backend Communication
 
-The backend separates application logic into service-level operations.
+The frontend centralizes API communication through a service layer.
 
-Role Matching
+React Component
+       │
+       ▼
+frontend/src/services/api.js
+       │
+       ▼
+VITE_API_URL
+       │
+       ▼
+FastAPI Backend
+       │
+       ▼
+/api/...
 
-The role recommendation service evaluates the user's skills against role requirements and returns ranked recommendations.
+The frontend uses API functions such as:
 
-The response contains information such as:
+getRecommendedRoles(userId)
+
+getJobsForRole(roleId)
+
+getJobMatch(userId, jobId)
+
+getSkillDemand(roleId)
+
+This keeps API communication separate from UI components.
+
+🧪 Validation & Testing
+
+CareerGraph was tested across the major application flows.
+
+Backend
+✓ FastAPI server startup
+✓ Graph database connectivity
+✓ Health endpoint
+✓ Recommended role endpoint
+✓ Role → Job endpoint
+✓ Job matching endpoint
+✓ Invalid user handling
+✓ Invalid job handling
+✓ Invalid role handling
+Frontend
+✓ Production build
+✓ API integration
+✓ Recommended roles loading
+✓ Job posting loading
+✓ Job matching
+✓ Navigation between application sections
+✓ Production deployment
+✓ Frontend → Render backend communication
+✓ CORS configuration
+🛡️ Error Handling
+
+The API handles invalid resources with appropriate errors.
+
+Examples:
+
+Unknown Role
+    ↓
+404 Not Found
+
+Unknown Job
+    ↓
+404 Not Found
+
+Unknown User
+    ↓
+404 Not Found
+
+Example:
 
 {
-  "role_id": "python-developer",
-  "role": "Python Developer",
-  "total_required_skills": 4,
-  "matched_skills": 3,
-  "match_percentage": 67,
-  "matchedSkills": [
-    "Python",
-    "SQL",
-    "Git"
-  ],
-  "missingSkills": [
-    "REST API"
-  ]
+  "detail": "Job or user not found"
 }
-Job Retrieval
+🌱 Seed Data
 
-Jobs associated with a role are retrieved through the graph relationship:
+CareerGraph uses deterministic seed data so that the application can be evaluated consistently.
 
-MATCH (r:Role {id: $role_id})
-MATCH (j:JobPosting)-[:FOR_ROLE]->(r)
-MATCH (j)-[:OFFERED_BY]->(c:Company)
+The dataset contains career roles, skills, companies, users, and job postings connected through graph relationships.
 
-The service returns:
+The current application supports 13 career roles in the seeded recommendation dataset.
 
-Job ID
-Job title
-Company
-Location
-Experience level
-Employment type
-Required skills
-Skill importance
-Required proficiency
-Job Matching
+Example career roles include:
 
-The job matching service:
+Python Developer
+Backend Developer
+Software Engineer
+Data Engineer
+Data Analyst
+Database Developer
+Full Stack Developer
+AI Engineer
+Frontend Developer
+Machine Learning Engineer
+Data Scientist
+Cloud Engineer
+DevOps Engineer
+📈 Example Recommendation
 
-Loads the requested user.
-Retrieves the user's skills and proficiency levels.
-Loads the selected job.
-Retrieves the job's required skills.
-Separates matched and missing requirements.
-Calculates weighted required-skill totals.
-Calculates the user's earned skill weight.
-Produces the final match percentage.
+For a sample user with:
 
-The service also validates that the requested user exists before calculating a match.
+Python
+SQL
+Git
+React
 
-API Flow
-Recommended Roles
-GET /api/users/{user_id}/recommended-roles
+CareerGraph can produce recommendations such as:
 
-Returns career roles ranked according to the user's current skills.
+┌────────────────────────────────────────┐
+│         RECOMMENDED CAREER ROLES       │
+├────────────────────────────────────────┤
+│                                        │
+│ Python Developer             67%       │
+│ Backend Developer            52%       │
+│ Software Engineer            48%       │
+│ Data Engineer                48%       │
+│ Data Analyst                 35%       │
+│ Database Developer           34%       │
+│ Full Stack Developer         33%       │
+│ AI Engineer                  30%       │
+│ Frontend Developer           23%       │
+│ Machine Learning Engineer    18%       │
+│ Data Scientist               17%       │
+│ Cloud Engineer               11%       │
+│ DevOps Engineer               9%       │
+│                                        │
+└────────────────────────────────────────┘
 
-Jobs for a Role
-GET /api/roles/{role_id}/jobs
+The user can then select a role and continue to its associated job postings.
 
-Returns job postings associated with a specific career role.
+🔎 Example: Role → Job → Match
+USER
+ │
+ │ Skills:
+ │ Python, SQL, Git
+ │
+ ▼
+PYTHON DEVELOPER
+ │
+ │ Role Match: 67%
+ │
+ ├── Matched
+ │     ├── Python
+ │     ├── SQL
+ │     └── Git
+ │
+ └── Missing
+       └── REST API
+ │
+ ▼
+TECHNOVA
+ │
+ └── Python Developer
+       │
+       ├── Python       ✓
+       ├── Django       ✗
+       ├── SQL          ✓
+       └── Git          ✓
+       │
+       ▼
+     JOB MATCH
+       │
+       ▼
+   Missing Skill:
+      Django
 
-Job Match
-GET /api/jobs/{job_id}/match?user_id={user_id}
+This two-level matching process is one of the core ideas of CareerGraph:
 
-Calculates the user's skill compatibility with an individual job posting.
+LEVEL 1
+User → Career Role
 
-Health Check
-GET /api/health
+LEVEL 2
+User → Specific Job
+☁️ Deployment Architecture
 
-Used to verify that the backend and graph database connection are available.
+CareerGraph is deployed as separate frontend and backend services.
 
-The database connection uses a bounded connection timeout so an unavailable database does not cause an indefinitely hanging health request.
+                         GITHUB
+                           │
+              ┌────────────┴────────────┐
+              │                         │
+              ▼                         ▼
+          VERCEL                      RENDER
+              │                         │
+              ▼                         ▼
+      React Frontend             FastAPI Backend
+              │                         │
+              │       HTTPS             │
+              └────────────────────────►│
+                                        │
+                                        ▼
+                                CognoDB / Neo4j
+                                Graph Database
+Production flow
+User Browser
+     │
+     ▼
+Vercel
+     │
+     │ REST API Request
+     ▼
+Render
+     │
+     ▼
+FastAPICOGNODB_URI
+     │
+     ▼
+CognoDB
+     │
+     ▼
+Graph Query Result
+     │
+     ▼
+FastAPI
+     │
+     ▼
+React Frontend
+     │
+     ▼
+User
+🔐 Environment Variables
 
-Error Handling
+Environment variables are used to keep database configuration outside the source code.
 
-The backend provides controlled responses for invalid resources.
+Backend configuration:
 
-Examples include:
+COGNODB_URI
+COGNODB_USERNAME
+COGNODB_PASSWORD
 
-Invalid role      → 404
-Invalid job       → 404
-Unknown user      → 404
+Frontend configuration:
 
-The job matching service also prevents an unknown user from being interpreted as a valid user with a 0% match.
+VITE_API_URL
 
-Seed Data
+Example frontend configuration:
 
-CareerGraph includes a deterministic demo dataset used to populate the graph database.
+VITE_API_URL=https://careergraph-backend-jf5d.onrender.com
 
-The seeded data contains:
+Secrets should never be committed to GitHub.
 
-Career roles
-Skills
-Companies
-Users
-Role-skill relationships
-Skill prerequisite relationships
-Job postings
-Job requirements
-Job-to-role relationships
-Job-to-company relationships
-
-The current recommendation system contains 13 career roles, with job postings mapped to all 13 roles.
-
-Running the Project
+🖥️ Run Locally
 Prerequisites
 
 Install:
@@ -350,215 +919,367 @@ Install:
 Python 3.x
 Node.js
 npm
-CognoDB / Neo4j-compatible graph database
-1. Clone the repository
+Git
+
+You also need access to the configured CognoDB / Neo4j-compatible graph database.
+
+1. Clone the Repository
 git clone <https://github.com/chaitanyaReddy4/CareerGraph.git>
 cd CareerGraph
 2. Backend Setup
+
+Move into the backend:
+
 cd backend
 
-Create and activate a virtual environment.
-
-Windows:
+Create a virtual environment:
 
 python -m venv .venv
+
+Activate it on Windows:
+
 .\.venv\Scripts\Activate.ps1
 
 Install dependencies:
 
 pip install -r requirements.txt
 
-Configure the required database environment variables.
+Configure the environment variables:
 
-Example:
+COGNODB_URI=your_database_uri
+COGNODB_USERNAME=your_username
+COGNODB_PASSWORD=your_password
 
-NEO4J_URI=
-NEO4J_USERNAME=
-NEO4J_PASSWORD=
+Start FastAPI:
 
-Do not commit actual credentials.
-
-3. Seed the Database
-
-From the backend directory:
-
-python -m seed.seed_data
-
-Expected output includes operations such as:
-
-Creating constraints...
-Seeding skills...
-Seeding roles...
-Seeding companies...
-Seeding user...
-Creating skill relationships...
-Creating prerequisite relationships...
-Seeding jobs...
-Creating role requirements...
-CareerGraph seed completed successfully.
-4. Start the Backend
 uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+
+Backend:
+
+http://127.0.0.1:8000
 
 Health check:
 
 http://127.0.0.1:8000/api/health
-5. Start the Frontend
+3. Frontend Setup
 
-Open another terminal:
+Open another terminal.
 
 cd frontend
+
+Install dependencies:
+
 npm install
+
+Create the frontend environment configuration:
+
+VITE_API_URL=http://127.0.0.1:8000
+
+Start the development server:
+
 npm run dev
 
-The Vite development server will provide the local frontend URL.
+The frontend will run using Vite's development server.
 
-Frontend Routes
+🔧 Production Build
 
-The application currently contains:
+Build the frontend:
 
-/                       Overview
-
-/roles                  Recommended Roles
-
-/roles/:roleId          Role Details
-
-/jobs                   Job Postings
-
-/jobs/:jobId            Job Details
-
-/career-focus           Career Focus
-
-/skills                 User Skills
-
-/profile                User Profile
-Verification
-
-The current implementation has been validated with:
-
-npm run lint
 npm run build
 
-Backend verification includes:
+The production files are generated inside:
 
-FastAPI health check
-Database connectivity
-Recommended role retrieval
-Job retrieval for all 13 roles
-Job matching
-Invalid role handling
-Invalid job handling
-Invalid user handling
-Python compilation
+frontend/dist/
 
-The current seeded dataset has been verified to provide job postings for all 13 career roles.
+Preview the production build locally if required:
 
-Example CareerGraph Flow
+npm run preview
+🩺 Backend Health Check
 
-For a user with:
+The backend exposes:
 
-Python
-SQL
-Git
-React
+GET /api/health
 
-the system can produce:
+Example successful response:
 
-                 User Skills
-                     │
-        ┌────────────┼────────────┐
-        ▼            ▼            ▼
- Python Developer  Backend      Software
-      67%         Developer     Engineer
-                    52%           48%
-        │            │             │
-        ▼            ▼             ▼
-    REST API      REST API       JavaScript
-                  Docker         REST API
+{
+  "status": "ok",
+  "service": "CareerGraph API",
+  "database": "connected"
+}
 
-The user can then select a role and inspect real seeded job postings associated with that role.
+This endpoint is useful for deployment verification because it checks both:
 
-At the individual job level, CareerGraph calculates a separate skill match based on the requirements of that specific posting.
+FastAPI
+   +
+Graph Database
+🧩 Why Graph Database?
 
-This creates a progression from:
+The main reason for using a graph database is the relationship-heavy nature of the application.
 
-"What roles fit my skills?"
-            ↓
-"What jobs exist for those roles?"
-            ↓
-"How well do I match this job?"
-            ↓
-"What skills should I develop?"
-Design Approach
+CareerGraph needs to answer questions such as:
 
-CareerGraph is intentionally structured around relationship-driven career intelligence rather than a simple job listing system.
+Which roles require the skills I have?
 
-The graph model makes it possible to connect:
+Which skills are missing for a particular role?
 
-Users
-  ↕
-Skills
-  ↕
-Roles
-  ↕
+Which jobs belong to this role?
+
+Which skills does this job require?
+
+Which companies offer these jobs?
+
+Which skills repeatedly appear across potential career paths?
+
+These are naturally represented as connected entities:
+
+User
+ │
+ └── HAS_SKILL ──► Skill
+                       │
+                       ▼
+                     Role
+                       │
+                       ▼
+                  Job Posting
+                   │         │
+                   ▼         ▼
+                 Skill     Company
+
+The graph model provides a natural foundation for traversing these relationships.
+
+🧮 Matching Philosophy
+
+CareerGraph separates role suitability from job suitability.
+
+                 USER
+                  │
+                  ▼
+          ┌───────────────┐
+          │ Role Matching │
+          └───────┬───────┘
+                  │
+                  ▼
+          Recommended Roles
+                  │
+                  ▼
+           Selected Role
+                  │
+                  ▼
+           Role's Jobs
+                  │
+                  ▼
+          ┌───────────────┐
+          │ Job Matching  │
+          └───────┬───────┘
+                  │
+                  ▼
+          Specific Job Match
+
+This is important because a candidate can be a strong fit for a career role while still missing one or more requirements of a particular job.
+
+🔮 Future Enhancements
+
+The current graph architecture provides a foundation for additional career intelligence features.
+
+1. Career Path Recommendations
+Current Role
+     │
+     ▼
+Required Skills
+     │
+     ▼
+Intermediate Role
+     │
+     ▼
+Target Role
+
+CareerGraph could recommend paths based on skill similarity and prerequisite relationships.
+
+2. Skill Demand Analysis
+
+The system can analyze job requirements to identify frequently requested skills.
+
 Jobs
-  ↕
-Companies
+ │
+ ▼
+Required Skills
+ │
+ ▼
+Skill Frequency
+ │
+ ▼
+High-Demand Skills
 
-This structure provides a foundation for future capabilities such as:
+This can help users prioritize their learning.
 
-Job-description based matching
-Personalized career paths
-Skill prerequisite traversal
-Role transition recommendations
-Skill demand analysis
-Learning-path recommendations
-Job recommendation ranking
+3. Personalized Learning Paths
 
-These are potential extensions and are not required for the current implementation.
+Skill gaps can be converted into a learning roadmap.
 
-Future Enhancements
-
-Possible future improvements include:
-
-Job Description Matching
-
-Allow users to paste a job description and calculate compatibility against their current skills.
-
-Job Description
-       ↓
-Skill Extraction
-       ↓
-User Skill Comparison
-       ↓
-Match Score
-       ↓
+Target Role
+     │
+     ▼
+Required Skills
+     │
+     ▼
+User Skills Comparison
+     │
+     ▼
 Missing Skills
-Career Path Recommendations
+     │
+     ▼
+Learning Priority
+     │
+     ▼
+Personalized Roadmap
+4. Job Description Intelligence
 
-Use role and prerequisite relationships to recommend paths from a user's current skill set toward a target role.
+A future version could accept a job description and automatically extract:
 
-Skill Demand Analysis
+Technologies
+Frameworks
+Tools
+Experience
+Required Skills
+Preferred Skills
 
-Analyze job requirements to identify frequently requested technologies across companies and roles.
+These extracted skills could then be compared directly against the user's graph profile.
 
-Personalized Learning Paths
+5. Dynamic Job Data
 
-Convert identified skill gaps into ordered learning priorities using skill prerequisite relationships.
+The current implementation uses deterministic job data for consistent development and evaluation.
 
-Project Status
+A future production version could integrate live job sources while preserving the same graph model.
 
-CareerGraph currently provides a working end-to-end implementation of:
+External Job Sources
+        │
+        ▼
+Job Data Processing
+        │
+        ▼
+Skill Extraction
+        │
+        ▼
+Graph Database
+        │
+        ▼
+CareerGraph Recommendations
+📊 Application Architecture Summary
+┌────────────────────────────────────────────────────┐
+│                    CAREERGRAPH                     │
+├────────────────────────────────────────────────────┤
+│                                                    │
+│  USER PROFILE                                      │
+│       │                                            │
+│       ▼                                            │
+│  CURRENT SKILLS                                    │
+│       │                                            │
+│       ▼                                            │
+│  ROLE MATCHING                                     │
+│       │                                            │
+│       ├──────────────► MATCHED SKILLS              │
+│       │                                            │
+│       ├──────────────► MISSING SKILLS              │
+│       │                                            │
+│       ▼                                            │
+│  RECOMMENDED ROLES                                 │
+│       │                                            │
+│       ▼                                            │
+│  ROLE-SPECIFIC JOBS                                │
+│       │                                            │
+│       ▼                                            │
+│  JOB MATCHING                                      │
+│       │                                            │
+│       ├──────────────► JOB MATCH %                 │
+│       │                                            │
+│       └──────────────► JOB SKILL GAPS              │
+│                                                    │
+│                       ▼                            │
+│                  CAREER FOCUS                     │
+│                                                    │
+└────────────────────────────────────────────────────┘
+📌 Project Status
 
-User Skills
-      ↓
-Career Role Matching
-      ↓
-Skill Gap Analysis
-      ↓
-Role-specific Job Discovery
-      ↓
-Job-level Skill Matching
-      ↓
-Career Focus
+CareerGraph currently provides an end-to-end implementation of:
 
-The core application, seeded graph data, API integrations, and frontend workflow have been implemented and validated.
+✓ User skill representation
+✓ Graph-based career role matching
+✓ Ranked role recommendations
+✓ Role-level skill gap analysis
+✓ Role-specific job discovery
+✓ Individual job matching
+✓ Job-level skill gap analysis
+✓ Skill importance handling
+✓ Proficiency-based matching
+✓ FastAPI REST APIs
+✓ React/Vite frontend
+✓ Graph database integration
+✓ Deterministic seed data
+✓ Frontend/backend production deployment
+✓ CORS configuration
+✓ Health monitoring
+🏆 What Makes CareerGraph Different?
+
+CareerGraph is not simply:
+
+Job Search
++
+Filters
+
+Instead, it provides a connected career intelligence workflow:
+
+                ┌─────────────────┐
+                │   YOUR SKILLS   │
+                └────────┬────────┘
+                         │
+                         ▼
+                ┌─────────────────┐
+                │  CAREER ROLES   │
+                └────────┬────────┘
+                         │
+                 ┌───────┴───────┐
+                 │               │
+                 ▼               ▼
+          ┌────────────┐   ┌─────────────┐
+          │ SKILL GAPS │   │    JOBS     │
+          └────────────┘   └──────┬──────┘
+                                  │
+                                  ▼
+                           ┌─────────────┐
+                           │ JOB MATCH   │
+                           └──────┬──────┘
+                                  │
+                                  ▼
+                           ┌─────────────┐
+                           │ CAREER      │
+                           │ FOCUS       │
+                           └─────────────┘
+
+The goal is to move from:
+
+"What jobs exist?"
+
+to:
+
+"What career path makes sense for me,
+what jobs fit that path,
+and what should I learn next?"
+👨‍💻 Author
+Chaitanya Reddy
+
+CareerGraph was developed as a graph-powered career intelligence platform combining:
+
+React
++
+FastAPI
++
+Python
++
+Graph Database
++
+Cypher
++
+REST APIs
+
+The project demonstrates the integration of frontend development, backend API engineering, graph data modeling, recommendation logic, job matching, and production deployment.
