@@ -1,4 +1,13 @@
+## 🔗 Live Application
+
+**Frontend:** https://careergraph-app.vercel.app/
+
+**Backend API:** https://careergraph-backend-jf5d.onrender.com/
+
+**API Health:** https://careergraph-backend-jf5d.onrender.com/api/health
+
 # CareerGraph
+
 
 > A graph-powered career intelligence platform that connects a user's skills with suitable career roles, relevant job opportunities, companies, and skill gaps.
 
